@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ post.title }}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <!-- Nagłówek posta -->
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.content }}</p>
+    <p><strong>Data publikacji:</strong> {{ post.published_date|date:"F j, Y, g:i a" }}</p>
+
+    <hr>
+
+    <!-- 📝 Formularz dodawania komentarzy -->
+    <h3>Dodaj komentarz:</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="button">💬 Dodaj komentarz</button>
+    </form>
+
+    <hr>
+
+    <!-- 💬 Lista komentarzy -->
+    <h3>Komentarze:</h3>
+    {% if comments %}
+        <ul class="comment-list">
+            {% for comment in comments %}
+                <li class="comment-item">
+                    <p><strong>{{ comment.author }}</strong> napisał:</p>
+                    <p>{{ comment.content }}</p>
+                    <small>Dodano: {{ comment.created_at|date:"F j, Y, g:i a" }}</small>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Brak komentarzy. Bądź pierwszy!</p>
+    {% endif %}
+
+    <br>
+    <a href="{% url 'post_list' %}" class="button">⬅️ Powrót do listy</a>
+
+</body>
+</html>

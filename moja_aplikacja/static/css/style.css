@@ -1,0 +1,235 @@
+/* 🌙 Resetowanie podstawowe */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f0f8ff;
+    color: #333;
+    padding: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* 🌙 Tryb ciemny */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+/* 🟡 Nagłówek */
+header {
+    background-color: #2c3e50;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+header h1 {
+    margin-bottom: 10px;
+}
+
+header nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* 🟡 Przycisk */
+.button, .toggle-button {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 5px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+
+.button:hover, .toggle-button:hover {
+    background-color: #2980b9;
+}
+
+.button.delete {
+    background-color: #e74c3c;
+}
+
+.button.delete:hover {
+    background-color: #c0392b;
+}
+
+/* 🟡 Lista postów */
+.post-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* 🟡 Karta posta */
+.post-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: white;
+    transition: box-shadow 0.3s;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+}
+
+body.dark-mode .post-card {
+    background-color: #1e1e1e;
+    border-color: #444;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.5);
+}
+
+.post-card:hover {
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+}
+
+/* 🟡 Przycisk pod postem */
+.post-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+/* 🟡 Stopka */
+footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+/* 🟡 Responsywność */
+@media (max-width: 768px) {
+    header nav {
+        flex-direction: column;
+    }
+
+    .post-buttons {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+/* Lista postów - Grid */
+.post-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1000px;
+    margin: 20px auto;
+}
+
+/* Karta posta */
+.post-card {
+    border: 1px solid #444;
+    border-radius: 12px;
+    padding: 15px;
+    background-color: #222;
+    color: #fff;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Przycisk pod postem */
+.post-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+}
+/* 📝 Stylizacja formularza komentarzy */
+form {
+    margin-bottom: 20px;
+}
+
+form .button {
+    padding: 10px 20px;
+    background-color: #2ecc71;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form .button:hover {
+    background-color: #27ae60;
+}
+
+/* 💬 Stylizacja listy komentarzy */
+.comment-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 20px;
+}
+
+.comment-item {
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #1e1e1e;
+    color: #fff;
+    transition: box-shadow 0.3s;
+}
+
+.comment-item:hover {
+    box-shadow: 0px 3px 8px rgba(255, 255, 255, 0.1);
+}
+
+.comment-item strong {
+    font-size: 16px;
+    color: #f1c40f;
+}
+
+.comment-item small {
+    font-size: 12px;
+    color: #bbb;
+}
+
+/* 🟡 Dostosowanie do trybu jasnego */
+body:not(.dark-mode) .comment-item {
+    background-color: #f9f9f9;
+    color: #333;
+    border-color: #ccc;
+}
+/* Stylizacja komunikatów */
+.messages {
+    margin: 20px 0;
+    padding: 10px;
+}
+
+.alert {
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+
+.alert-success { background-color: #2ecc71; }  /* Zielony */
+.alert-info { background-color: #3498db; }     /* Niebieski */
+.alert-warning { background-color: #e67e22; }  /* Pomarańczowy */
+.alert-error { background-color: #e74c3c; }    /* Czerwony */

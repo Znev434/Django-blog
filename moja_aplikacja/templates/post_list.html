@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post List</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+{% if messages %}
+  <div class="messages">
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+    <!-- Przycisk do zmiany trybu -->
+    <button class="toggle-button" onclick="toggleDarkMode()">🌙 Tryb Ciemny</button>
+
+    <h1>Post List</h1>
+    <a href="{% url 'add_post' %}">Add New Post</a>
+    <div class="post-list">
+    {% for post in posts %}
+        <div class="post-card">
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content|truncatewords:30 }}</p>
+            <div class="post-buttons">
+                <a href="{% url 'post_detail' post.pk %}" class="button">👁️ Zobacz</a>
+                <a href="{% url 'edit_post' post.pk %}" class="button">✏️ Edytuj</a>
+                <a href="{% url 'delete_post' post.pk %}" class="button delete" onclick="return confirm('Czy na pewno chcesz usunąć ten post?');">🗑️ Usuń</a>
+            </div>
+        </div>
+    {% empty %}
+        <p>No posts yet.</p>
+    {% endfor %}
+</div>
+
+
+    <!-- JavaScript do przełączania trybu -->
+    <script>
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
+        }
+
+        // Sprawdź preferencje użytkownika
+        window.onload = () => {
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+            }
+        };
+    </script>
+</body>
+</html>
